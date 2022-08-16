@@ -8,7 +8,7 @@ class Author(Base):
     __tablename__ = 'author'
 
     id = Column(Integer, primary_key=True, unique=True, index=True)
-    name = Column(String)
+    author = Column(String)
 
     books = relationship('Book', list_book='owner')
 
