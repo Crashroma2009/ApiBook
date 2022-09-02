@@ -1,6 +1,12 @@
+import os
+
 from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('sqlite:///sqlite3.db')
-engine.connect()
+path_db = os.path.join('.', '../sqlite3.db')
+engine = create_engine(f'sqlite:///{path_db}', connect_args={'check_same_thread': False})
 
-print(engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
