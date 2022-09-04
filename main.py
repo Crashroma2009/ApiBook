@@ -1,6 +1,6 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
-import schemas
+import models, schemas
 from models import Author, Book
 from databases import Base, engine
 from dependency import get_db
@@ -44,8 +44,14 @@ def read_book(book_id: int, db: Session = Depends(get_db)):
     return book
 
 
-
-
+@app.post('/book_create/', response_model=schemas.Book)
+def create_book(book: schemas.Book, db: Session = Depends(get_db)):
+    #print(book)
+    add_book = models.Book(title=book.title, genre=book.genre, author_id=book.author_id)
+    db.add(add_book)
+    db.commit()
+    db.refresh(add_book)
+    return add_book
 
 
 

@@ -27,7 +27,7 @@ class BookSchema(BaseModel):
     genre: str
 
 
-class BookCrate(BookSchema):
+class BookCreate(Book):
     pass
 
 
