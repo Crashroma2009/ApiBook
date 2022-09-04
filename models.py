@@ -1,7 +1,7 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String, Integer, ForeignKey
 
-from databases import Base, engine
+from databases import Base
 
 
 class Author(Base):
@@ -22,8 +22,7 @@ class Book(Base):
     author = relationship('Author')
 
 
-if __name__ == '__main__':
-    Base.metadata.create_all(engine)
+
 
 
 

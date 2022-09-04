@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from models.models import Book
+from models import Book
 
 
 class AuthorSchema(BaseModel):
@@ -13,7 +13,8 @@ class AuthorCreate(AuthorSchema):
 
 class Author(AuthorSchema):
     id: int
-    books: list[Book] = []
+    name: str
+    #books: list[Book] = []
 
     class Config:
         orm_mode = True
